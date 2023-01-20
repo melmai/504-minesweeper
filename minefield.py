@@ -6,6 +6,18 @@ class Minefield:
         self._cols = cols
         self._data = []
 
+    @property
+    def rows(self):
+        return self._rows
+
+    @property
+    def cols(self):
+        return self._cols
+
+    @property
+    def data(self):
+        return self._data
+
     def add_row(self, line, row):
         """
         This method adds a new row for the minefield grid, checks the rows
