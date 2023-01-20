@@ -11,6 +11,18 @@ class MinefieldTests(unittest.TestCase):
         self.assertEqual([], minefield.data,
                          'Minefield should have empty data array.')
 
+    def test_create_row(self):
+        minefield = Minefield(3, 5)
+        all_bombs = minefield.create_row(["*", "*", "*", "*", "*"])
+        self.assertEqual(["*", "*", "*", "*", "*"], all_bombs,
+                         "Minefield row should be all bombs.")
+        no_bombs = minefield.create_row([".", ".", ".", ".", "."])
+        self.assertEqual([0, 0, 0, 0, 0], no_bombs,
+                         'Minefield row should have 0-0-0-0-0')
+        some_bombs = minefield.create_row(["*", "*", "*", ".", "."])
+        self.assertEqual(["*", "*", "*", 1, 0], some_bombs,
+                         'Minefield not incrementing properly')
+
 
 if __name__ == '__main__':
     unittest.main()
