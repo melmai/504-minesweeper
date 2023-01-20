@@ -70,6 +70,27 @@ class MinefieldTests(unittest.TestCase):
         self.assertEqual(expected_data, minefield.data,
                          "Row not updating based on previous row.")
 
+    def test_add_row(self):
+        minefield = Minefield(5, 5)
+
+        # add row of all bombs
+        minefield.add_row("*****", 0)
+        self.assertEqual([["*", "*", "*", "*", "*"]], minefield.data,
+                         'Row of chars not being processed accurately.')
+
+        # add row of no bombs
+        minefield.add_row(".....", 1)
+        self.assertEqual([["*", "*", "*", "*", "*"],
+                          [2, 3, 3, 3, 2]], minefield.data,
+                         'Row of chars not being processed accurately.')
+
+        # add row of some bombs
+        minefield.add_row("..*.*", 2)
+        self.assertEqual([["*", "*", "*", "*", "*"],
+                          [2, 4, 4, 5, 3],
+                          [0, 1, "*", 2, "*"]], minefield.data,
+                         'Row of chars not being processed accurately.')
+
 
 if __name__ == '__main__':
     unittest.main()
