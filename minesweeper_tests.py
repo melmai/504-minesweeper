@@ -91,6 +91,20 @@ class MinefieldTests(unittest.TestCase):
                           [0, 1, "*", 2, "*"]], minefield.data,
                          'Row of chars not being processed accurately.')
 
+    def test_bomb_found(self):
+        minefield = Minefield(5, 5)
+
+        # create a test row with a bomb, should return True
+        minefield.data = [["*", 1, 0, 0, 0]]
+        bomb_found = minefield.bomb_found(0)
+        self.assertEqual(True, bomb_found, "bomb_found() should return True")
+
+        # replace test row with no bombs, should return False
+        minefield.data = [[0, 0, 0, 0, 0]]
+        print(minefield.data)
+        bomb_found = minefield.bomb_found(0)
+        self.assertEqual(False, bomb_found, "bomb_found() should return False")
+
 
 if __name__ == '__main__':
     unittest.main()
