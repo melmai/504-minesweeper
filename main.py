@@ -26,6 +26,7 @@ def minesweeper():
         # write field labels
         output_file.write(f"Field #{field_number}:\n")
 
+
         # read lines of minefield
         for n in range(rows):
             line = input_file.readline().strip('\n')

@@ -24,6 +24,7 @@ class Minefield:
         if row != 0 and self.bomb_found(row - 1):
             self._data[row] = self.update_row(row, "prev")
 
+
         # if bombs in current row, update previous row
         if (row - 1) >= 0 and self.bomb_found(row):
             self._data[row - 1] = self.update_row(row - 1)
