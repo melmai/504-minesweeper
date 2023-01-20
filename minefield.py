@@ -10,13 +10,25 @@ class Minefield:
     def rows(self):
         return self._rows
 
+    @rows.setter
+    def rows(self, rows):
+        self._rows = rows
+
     @property
     def cols(self):
         return self._cols
 
+    @cols.setter
+    def cols(self, cols):
+        self._cols = cols
+
     @property
     def data(self):
         return self._data
+
+    @data.setter
+    def data(self, data):
+        self._data = data
 
     def add_row(self, line, row):
         """
