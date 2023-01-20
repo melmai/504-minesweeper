@@ -37,7 +37,8 @@ class MinefieldTests(unittest.TestCase):
     def test_update_row(self):
         """
         This method tests the update_row() method to make sure the values are
-        incrementing properly
+        incrementing properly based on the row before/after a given row
+        position.
         """
         minefield = Minefield(5, 5)
 
@@ -71,6 +72,12 @@ class MinefieldTests(unittest.TestCase):
                          "Row not updating based on previous row.")
 
     def test_add_row(self):
+        """
+        This method tests the add_row() method, which accepts a string of
+        characters, generates a list containing "*" for a bomb or ints that
+        represent the number of bombs surrounding that position, and appends
+        the list to the object's data property.
+        """
         minefield = Minefield(5, 5)
 
         # add row of all bombs
@@ -92,6 +99,10 @@ class MinefieldTests(unittest.TestCase):
                          'Row of chars not being processed accurately.')
 
     def test_bomb_found(self):
+        """
+        This method tests the helper method that identifies if a given row
+        contains a bomb.
+        """
         minefield = Minefield(5, 5)
 
         # create a test row with a bomb, should return True
@@ -101,10 +112,21 @@ class MinefieldTests(unittest.TestCase):
 
         # replace test row with no bombs, should return False
         minefield.data = [[0, 0, 0, 0, 0]]
-        print(minefield.data)
         bomb_found = minefield.bomb_found(0)
         self.assertEqual(False, bomb_found, "bomb_found() should return False")
 
+    def test_is_bomb(self):
+        """
+        This method tests the helper method that identifies a cell as
+        having a bomb.
+        """
+        # * values should return True
+        self.assertEqual(True, Minefield.is_bomb("*"),
+                         "is_bomb() should return True for '*'")
+
+        # . values should return False
+        self.assertEqual(False, Minefield.is_bomb("."),
+                         "is_bomb() should return False for '.'")
 
 if __name__ == '__main__':
     unittest.main()
