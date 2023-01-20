@@ -45,5 +45,9 @@ def minesweeper(input_file="mines.txt", output_file="minesweeper_output.txt"):
 
 
 if __name__ == '__main__':
+    # test
     minesweeper("mines_input_test.txt", "mines_output_test.txt")
+
+    # real
+    minesweeper()
 
