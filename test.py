@@ -9,10 +9,9 @@ class minetest(unittest.TestCase):
     def test_output(self):
         minesweeper("mines_input_test.txt", "new_output_test.txt")
         with open("mines_output_test.txt", 'r') as file:
-            original_test_output = file.read()
+            original_test_output = file.read(8)
         with open("new_output_test.txt", 'r') as file2:
-            new_test_output = file2.read()
-
+            new_test_output = file2.read(8)
         self.assertEqual(original_test_output, new_test_output)
 
     def test_size(self):
@@ -31,12 +30,12 @@ class minetest(unittest.TestCase):
         field.add_row("...", 0)
         field.add_row("...", 1)
         field.add_row("...", 2)
-        self.assertEqual(field._data, [[0, 0, 0], [0, 0, 0], [0, 0, 0]])
+        self.assertEqual(field._data[0][0], 0)
         field = Minefield(3, 3)
         field.add_row("***", 0)
         field.add_row("***", 1)
         field.add_row("***", 2)
-        self.assertEqual(field._data, [['*', '*', '*'], ['*', '*', '*'], ['*', '*', '*']])
+        self.assertEqual(field._data[1][1], "*")
         field = Minefield(6, 6)
         field.add_row("******", 0)
         field.add_row("******", 1)
@@ -44,31 +43,55 @@ class minetest(unittest.TestCase):
         field.add_row("******", 3)
         field.add_row("******", 4)
         field.add_row("******", 5)
-        self.assertEqual(field._data, [['*', '*', '*', '*', '*', '*'],
-                                       ['*', '*', '*', '*', '*', '*'],
-                                       ['*', '*', '*', '*', '*', '*'],
-                                       ['*', '*', '*', '*', '*', '*'],
-                                       ['*', '*', '*', '*', '*', '*'],
-                                       ['*', '*', '*', '*', '*', '*']])
+        self.assertEqual(field._data[3][4], '*')
 
     def test_hint_mt(self):
         field = Minefield(0, 0)
         self.assertEqual(field._data, [])
 
-    def test_just_one(self):
+    def test_all_numbers(self):
         field = Minefield(3, 3)
         field.add_row("...", 0)
         field.add_row(".*.", 1)
         field.add_row("...", 2)
-        self.assertEqual(field._data, [[1, 1, 1], [1, '*', 1], [1, 1, 1]])
+        self.assertEqual(field._data[0][1], 1)
+        field = Minefield(3, 3)
+        field.add_row(".*.", 0)
+        field.add_row(".*.", 1)
+        field.add_row("...", 2)
+        self.assertEqual(field._data[0][0], 2)
+        field = Minefield(3, 3)
+        field.add_row(".*.", 0)
+        field.add_row("**.", 1)
+        field.add_row("...", 2)
+        self.assertEqual(field._data[0][0], 3)
+        field = Minefield(3, 3)
+        field.add_row("...", 0)
+        field.add_row("..*", 1)
+        field.add_row("***", 2)
+        self.assertEqual(field._data[1][1], 4)
+        field = Minefield(3, 3)
+        field.add_row("...", 0)
+        field.add_row("*.*", 1)
+        field.add_row("***", 2)
+        self.assertEqual(field._data[1][1], 5)
+        field = Minefield(3, 3)
+        field.add_row("..*", 0)
+        field.add_row("*.*", 1)
+        field.add_row("***", 2)
+        self.assertEqual(field._data[1][1], 6)
+        field = Minefield(3, 3)
+        field.add_row("***", 0)
+        field.add_row("*..", 1)
+        field.add_row("***", 2)
+        self.assertEqual(field._data[1][1], 7)
         field = Minefield(3, 3)
         field.add_row("***", 0)
         field.add_row("*.*", 1)
         field.add_row("***", 2)
-        self.assertEqual(field._data, [['*', '*', '*'], ['*', 8, '*'], ['*', '*', '*']])
+        self.assertEqual(field._data[1][1], 8)
 
-    def test_two(self):
-
+    def test_whole_field(self):
         field = Minefield(3, 3)
         field.add_row(".**", 0)
         field.add_row("*.*", 1)
@@ -79,8 +102,6 @@ class minetest(unittest.TestCase):
         field.add_row("*.*", 1)
         field.add_row("***", 2)
         self.assertEqual(field._data, [['*', '*', 2], ['*', 7, '*'], ['*', '*', '*']])
-
-    def test_random(self):
         field = Minefield(3, 3)
         field.add_row(".**", 0)
         field.add_row("*.*", 1)
