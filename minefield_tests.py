@@ -1,9 +1,6 @@
 import unittest
-from minesweeper import minesweeper
 from minefield import Minefield
 
-
-# output validation test and hint validation test
 
 class MinefieldTests(unittest.TestCase):
 
