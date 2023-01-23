@@ -50,8 +50,8 @@ class MinefieldTests(unittest.TestCase):
         # update the second row based on the third row (next)
         minefield.update_row(1)
         expected_data = [[0, 0, 0, 0, 0],
-                          [1, 1, 0, 1, 1],
-                          ["*", 1, 0, 1, "*"]]
+                         [1, 1, 0, 1, 1],
+                         ["*", 1, 0, 1, "*"]]
         self.assertEqual(expected_data, minefield.data,
                          "Row not updating based on next row.")
 
@@ -73,20 +73,25 @@ class MinefieldTests(unittest.TestCase):
 
     def test_min_mine(self):
         # adds a single row, single column minefield with only one mine
-        field = Minefield(1,1)
+        field = Minefield(1, 1)
         field.add_row("*", 0)
 
-        # checks that the field data of one mine reflects the single mine accurately
-        self.assertEqual(field._data, [["*"]], "1 row, 1 col single mine field not printed correctly")
+        # checks that the field data of one mine reflects the single mine
+        # accurately
+        self.assertEqual(field._data, [["*"]],
+                         "1 row, 1 col single mine field not printed "
+                         "correctly")
 
     def test_min_space(self):
         # adds a single row, single column minefield with only one .
         field = Minefield(1, 1)
         field.add_row(".", 0)
 
-        # checks that the field data of one . reflects the single it accurately with a single 0
-        self.assertEqual(field._data, [[0]], "1 row, 1 col single space field not printed correctly")
-
+        # checks that the field data of one . reflects the single it
+        # accurately with a single 0
+        self.assertEqual(field._data, [[0]],
+                         "1 row, 1 col single space field not printed "
+                         "correctly")
 
     def test_size(self):
         field = Minefield(4, 4)
@@ -170,24 +175,28 @@ class MinefieldTests(unittest.TestCase):
         field.add_row(".**", 0)
         field.add_row("*.*", 1)
         field.add_row("***", 2)
-        self.assertEqual(field._data, [[2, '*', '*'], ['*', 7, '*'], ['*', '*', '*']])
+        self.assertEqual(field._data,
+                         [[2, '*', '*'], ['*', 7, '*'], ['*', '*', '*']])
         field = Minefield(3, 3)
         field.add_row("**.", 0)
         field.add_row("*.*", 1)
         field.add_row("***", 2)
-        self.assertEqual(field._data, [['*', '*', 2], ['*', 7, '*'], ['*', '*', '*']])
+        self.assertEqual(field._data,
+                         [['*', '*', 2], ['*', 7, '*'], ['*', '*', '*']])
         field = Minefield(3, 3)
         field.add_row(".**", 0)
         field.add_row("*.*", 1)
         field.add_row("*..", 2)
-        self.assertEqual(field._data, [[2, '*', '*'], ['*', 5, '*'], ['*', 3, 1]])
+        self.assertEqual(field._data,
+                         [[2, '*', '*'], ['*', 5, '*'], ['*', 3, 1]])
         field = Minefield(3, 12)
         field.add_row(".**..*...*..", 0)
         field.add_row("*.*..*..**..", 1)
         field.add_row("*....*..**..", 2)
-        self.assertEqual(field._data, [[2, '*', '*', 2, 2, '*', 2, 1, 3, '*', 2, 0],
-                                       ['*', 5, '*', 2, 3, '*', 3, 2, '*', '*', 3, 0],
-                                       ['*', 3, 1, 1, 2, '*', 2, 2, '*', '*', 2, 0]])
+        self.assertEqual(field._data,
+                         [[2, '*', '*', 2, 2, '*', 2, 1, 3, '*', 2, 0],
+                          ['*', 5, '*', 2, 3, '*', 3, 2, '*', '*', 3, 0],
+                          ['*', 3, 1, 1, 2, '*', 2, 2, '*', '*', 2, 0]])
 
 
 if __name__ == '__main__':
