@@ -2,6 +2,9 @@ from minefield import Minefield
 
 
 class Minesweeper:
+    """
+    This class generates hints for the minefields provided by an input file
+    """
     def __init__(self,
                  input_file="mines.txt",
                  output_file="minesweeper_output.txt"):
@@ -12,8 +15,8 @@ class Minesweeper:
 
     def process_file(self):
         """
-        This method reads the provided input file and prints hints to the
-        provided output file.
+        This method processes the minefield input data until EOF and closes
+        the files upon completion.
         """
         # get dimensions and initialize field numbers
         dimensions = self._input_file.readline().strip()
@@ -43,7 +46,6 @@ class Minesweeper:
         field_number += 1
 
         # the row/col values are strings that should be ints
-        # the row/col values are strings that should be ints
         rows = int(rows)
         cols = int(cols)
 
@@ -69,4 +71,8 @@ class Minesweeper:
 
 
 if __name__ == '__main__':
+    # test
+    Minesweeper("mines_input_test.txt", "mines_output_test.txt")
+
+    # real
     Minesweeper()
