@@ -1,5 +1,5 @@
 import unittest
-from main import minesweeper
+from minesweeper import minesweeper
 from minefield import Minefield
 
 
