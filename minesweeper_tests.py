@@ -1,95 +1,20 @@
 import unittest
-from minesweeper import minesweeper
-from minefield import Minefield
+from minesweeper import Minesweeper
 
 
-class MinefieldTests(unittest.TestCase):
-    def test_init(self):
-        """This method tests the instantiation of a minefield"""
-        minefield = Minefield(5, 7)
+class MinesweeperTests(unittest.TestCase):
+    def test_output(self):
+        Minesweeper("mines_input_test.txt", "new_output_test.txt")
+        with open("mines_output_test.txt", 'r') as file:
+            original_test_output = file.read(8)
+        with open("new_output_test.txt", 'r') as file2:
+            new_test_output = file2.read(8)
+        self.assertEqual(original_test_output, new_test_output)
 
-        # check rows, cols, and dataset upon creation of minefield object
-        self.assertEqual(5, minefield.rows, "Minefield should have 5 rows.")
-        self.assertEqual(7, minefield.cols, "Minefield should have 7 rows.")
-        self.assertEqual([], minefield.data,
-                         'Minefield should have empty data array.')
-
-    def test_create_row(self):
-        """
-        This method tests the creation of a single row from a list of chars
-        """
-        minefield = Minefield(3, 5)
-
-        # test creation of row with all bombs
-        all_bombs = minefield.create_row(["*", "*", "*", "*", "*"])
-        self.assertEqual(["*", "*", "*", "*", "*"], all_bombs,
-                         "Minefield row should be all bombs.")
-
-        # test creation of row with no bombs
-        no_bombs = minefield.create_row([".", ".", ".", ".", "."])
-        self.assertEqual([0, 0, 0, 0, 0], no_bombs,
-                         'Minefield row should have 0-0-0-0-0')
-
-        # test creation of row with some bombs
-        some_bombs = minefield.create_row(["*", "*", "*", ".", "."])
-        self.assertEqual(["*", "*", "*", 1, 0], some_bombs,
-                         'Minefield not incrementing properly')
-
-    def test_update_row(self):
-        """
-        This method tests the update_row() method to make sure the values are
-        incrementing properly
-        """
-        minefield = Minefield(5, 5)
-
-        # set test data
-        minefield.data = [[0, 0, 0, 0, 0],
-                          [0, 0, 0, 0, 0],
-                          ["*", 1, 0, 1, "*"]]
-
-        # update the second row based on the third row (next)
-        minefield.update_row(1)
-        expected_data = [[0, 0, 0, 0, 0],
-                          [1, 1, 0, 1, 1],
-                          ["*", 1, 0, 1, "*"]]
-        self.assertEqual(expected_data, minefield.data,
-                         "Row not updating based on next row.")
-
-        # update the minefield data
-        minefield.data = [[0, 0, 0, 0, 0],
-                          [1, 1, 0, 1, 1],
-                          ["*", 1, 0, 1, "*"],
-                          ["*", 1, 0, 1, "*"]]
-
-        # update the third and fourth rows based on new data
-        minefield.update_row(2)
-        minefield.update_row(3, "prev")
-        expected_data = [[0, 0, 0, 0, 0],
-                         [1, 1, 0, 1, 1],
-                         ["*", 2, 0, 2, "*"],
-                         ["*", 2, 0, 2, "*"]]
-        self.assertEqual(expected_data, minefield.data,
-                         "Row not updating based on previous row.")
-
-    def test_min_mine(self):
-        # adds a single row, single column minefield with only one mine
-        field = Minefield(1,1)
-        field.add_row("*", 0)
-
-        # checks that the field data of one mine reflects the single mine accurately
-        self.assertEqual(field._data, [["*"]], "1 row, 1 col single mine field not printed correctly")
-
-    def test_min_space(self):
-        # adds a single row, single column minefield with only one .
-        field = Minefield(1, 1)
-        field.add_row(".", 0)
-
-        # checks that the field data of one . reflects the single it accurately with a single 0
-        self.assertEqual(field._data, [[0]], "1 row, 1 col single space field not printed correctly")
 
     def test_max_mines(self):
         # runs the minesweeper function for the test input file and writes to the test output file
-        minesweeper("mines_input_test.txt", "mines_output_test.txt")
+        Minesweeper("mines_input_test.txt", "mines_output_test.txt")
 
         # opens the output file and stores the output line range to read for testing, then closes the output file
         output_file = open("mines_output_test.txt", 'r')
@@ -102,7 +27,7 @@ class MinefieldTests(unittest.TestCase):
 
     def test_max_spaces(self):
         # runs the minesweeper function for the test input file and writes to the test output file
-        minesweeper("mines_input_test.txt", "mines_output_test.txt")
+        Minesweeper("mines_input_test.txt", "mines_output_test.txt")
 
         # opens the output file and stores the output line range to read for testing, then closes the output file
         output_file = open("mines_output_test.txt", 'r')
@@ -115,7 +40,7 @@ class MinefieldTests(unittest.TestCase):
 
     def test_max_mines_horizontal(self):
         # runs the minesweeper function for the test input file and writes to the test output file
-        minesweeper("mines_input_test.txt", "mines_output_test.txt")
+        Minesweeper("mines_input_test.txt", "mines_output_test.txt")
 
         # opens the output file and stores the output line range to read for testing, then closes the output file
         output_file = open("mines_output_test.txt", 'r')
@@ -127,7 +52,7 @@ class MinefieldTests(unittest.TestCase):
 
     def test_max_mines_vertical(self):
         # runs the minesweeper function for the test input file and writes to the test output file
-        minesweeper("mines_input_test.txt", "mines_output_test.txt")
+        Minesweeper("mines_input_test.txt", "mines_output_test.txt")
 
         # opens the output file and stores the output line range to read for testing, then closes the output file
         output_file = open("mines_output_test.txt", 'r')
@@ -140,7 +65,7 @@ class MinefieldTests(unittest.TestCase):
 
     def test_max_spaces_horizontal(self):
         # runs the minesweeper function for the test input file and writes to the test output file
-        minesweeper("mines_input_test.txt", "mines_output_test.txt")
+        Minesweeper("mines_input_test.txt", "mines_output_test.txt")
 
         # opens the output file and stores the output line range to read for testing, then closes the output file
         output_file = open("mines_output_test.txt", 'r')
@@ -152,7 +77,7 @@ class MinefieldTests(unittest.TestCase):
 
     def test_max_spaces_vertical(self):
         # runs the minesweeper function for the test input file and writes to the test output file
-        minesweeper("mines_input_test.txt", "mines_output_test.txt")
+        Minesweeper("mines_input_test.txt", "mines_output_test.txt")
 
         # opens the output file and stores the output line range to read for testing, then closes the output file
         output_file = open("mines_output_test.txt", 'r')

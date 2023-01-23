@@ -6,7 +6,7 @@ class Minesweeper:
     This class generates hints for the minefields provided by an input file
     """
     def __init__(self,
-                 input_file="mines.txt",
+                 input_file="minesweeper_input.txt",
                  output_file="minesweeper_output.txt"):
 
         self._input_file = open(input_file, 'r')
@@ -71,7 +71,11 @@ class Minesweeper:
 
 
 if __name__ == '__main__':
-    # test
+
+    # test official input/output
+    Minesweeper("official_input.txt", "official_output.txt")
+
+    # test generated data
     Minesweeper("mines_input_test.txt", "mines_output_test.txt")
 
     # real
