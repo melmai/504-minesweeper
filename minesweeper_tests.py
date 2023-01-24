@@ -4,8 +4,14 @@ from minesweeper import Minesweeper
 
 class MinesweeperTests(unittest.TestCase):
     def test_output(self):
-        Minesweeper("max_input_test.txt", "new_output_test.txt")
+
+        """
+        Uses minesweeper_input.txt as input and generates new_output_test.txt as output. Compares first 8 lines of
+        output with the original output.
+        """
+        Minesweeper("minesweeper_input.txt", "new_output_test.txt")
         with open("max_output_test.txt", 'r') as file:
+
             original_test_output = file.read(8)
         with open("new_output_test.txt", 'r') as file2:
             new_test_output = file2.read(8)
