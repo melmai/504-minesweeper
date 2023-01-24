@@ -6,6 +6,30 @@ class Minefield:
         self._cols = cols
         self._data = []
 
+    @property
+    def rows(self):
+        return self._rows
+
+    @rows.setter
+    def rows(self, rows):
+        self._rows = rows
+
+    @property
+    def cols(self):
+        return self._cols
+
+    @cols.setter
+    def cols(self, cols):
+        self._cols = cols
+
+    @property
+    def data(self):
+        return self._data
+
+    @data.setter
+    def data(self, data):
+        self._data = data
+
     def add_row(self, line, row):
         """
         This method adds a new row for the minefield grid, checks the rows
@@ -23,6 +47,7 @@ class Minefield:
         # if bombs in previous row, update current row
         if row != 0 and self.bomb_found(row - 1):
             self._data[row] = self.update_row(row, "prev")
+
 
         # if bombs in current row, update previous row
         if (row - 1) >= 0 and self.bomb_found(row):
