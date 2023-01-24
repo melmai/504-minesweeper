@@ -94,6 +94,9 @@ class MinefieldTests(unittest.TestCase):
                          "correctly")
 
     def test_size(self):
+        """
+        Tests to make sure that the field and columns are equal to what they are set to
+        """
         field = Minefield(4, 4)
         self.assertEqual(field.rows, 4)
         self.assertEqual(field.cols, 4)
@@ -105,6 +108,10 @@ class MinefieldTests(unittest.TestCase):
         self.assertEqual(field.cols, 0)
 
     def test_hint_homogenous(self):
+        """
+        Tests to make sure that the hints are correct at specific spots.
+        """
+
         field = Minefield(3, 3)
         field.add_row("...", 0)
         field.add_row("...", 1)
@@ -125,10 +132,18 @@ class MinefieldTests(unittest.TestCase):
         self.assertEqual(field._data[3][4], '*')
 
     def test_hint_mt(self):
+        """
+        Tests to make sure if minefield is set to 0, 0 that it is actually empty
+
+        """
         field = Minefield(0, 0)
         self.assertEqual(field._data, [])
 
     def test_all_numbers(self):
+        """
+        Tests to make sure that hints are generated correctly. Testing that it produces numbers 1-8
+
+        """
         field = Minefield(3, 3)
         field.add_row("...", 0)
         field.add_row(".*.", 1)
@@ -171,6 +186,10 @@ class MinefieldTests(unittest.TestCase):
         self.assertEqual(field._data[1][1], 8)
 
     def test_whole_field(self):
+        """
+        Tests that verify that a whole hint field is generated correctly.
+
+        """
         field = Minefield(3, 3)
         field.add_row(".**", 0)
         field.add_row("*.*", 1)
