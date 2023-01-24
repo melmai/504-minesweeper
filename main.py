@@ -1,10 +1,10 @@
 from minefield import Minefield
 
 
-def minesweeper(input_file="mines.txt", output_file="minesweeper_output.txt"):
+def minesweeper():
     # set up i/o files
-    input_file = open(input_file, 'r')
-    output_file = open(output_file, 'w')
+    input_file = open('mines.txt', 'r')
+    output_file = open('minesweeper_output.txt', 'w')
 
     # get dimensions and initialize field numbers
     dimensions = input_file.readline().strip()
@@ -26,7 +26,6 @@ def minesweeper(input_file="mines.txt", output_file="minesweeper_output.txt"):
         # write field labels
         output_file.write(f"Field #{field_number}:\n")
 
-
         # read lines of minefield
         for n in range(rows):
             line = input_file.readline().strip('\n')
@@ -45,9 +44,5 @@ def minesweeper(input_file="mines.txt", output_file="minesweeper_output.txt"):
 
 
 if __name__ == '__main__':
-    # test
-    minesweeper("mines_input_test.txt", "mines_output_test.txt")
-
-    # real
     minesweeper()
 
