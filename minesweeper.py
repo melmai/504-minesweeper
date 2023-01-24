@@ -76,7 +76,7 @@ if __name__ == '__main__':
     Minesweeper("official_input.txt", "official_output.txt")
 
     # test generated data
-    Minesweeper("mines_input_test.txt", "mines_output_test.txt")
+    Minesweeper("max_input_test.txt", "max_output_test.txt")
 
     # real
     Minesweeper()
