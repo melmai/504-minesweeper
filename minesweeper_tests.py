@@ -4,21 +4,25 @@ from minesweeper import Minesweeper
 
 class MinesweeperTests(unittest.TestCase):
     def test_output(self):
-        Minesweeper("mines_input_test.txt", "new_output_test.txt")
-        with open("mines_output_test.txt", 'r') as file:
+        Minesweeper("max_input_test.txt", "new_output_test.txt")
+        with open("max_output_test.txt", 'r') as file:
             original_test_output = file.read(8)
         with open("new_output_test.txt", 'r') as file2:
             new_test_output = file2.read(8)
         self.assertEqual(original_test_output, new_test_output)
 
     def test_max_mines(self):
+        """
+        This method tests the ability of the Minesweeper class to create an accurate
+        minefield of the maximum size (100x100) composed of all mines
+        """
         # runs the minesweeper function for the test input file and writes
         # to the test output file
-        Minesweeper("mines_input_test.txt", "mines_output_test.txt")
+        Minesweeper("max_input_test.txt", "max_output_test.txt")
 
         # opens the output file and stores the output line range to read for
         # testing, then closes the output file
-        output_file = open("mines_output_test.txt", 'r')
+        output_file = open("max_output_test.txt", 'r')
         test_range = output_file.readlines()[0:101]
         output_file.close()
 
@@ -130,13 +134,17 @@ class MinesweeperTests(unittest.TestCase):
                          'minefield correctly, all field char should be *')
 
     def test_max_spaces(self):
+        """
+        This method tests the ability of the Minesweeper class to create an accurate
+        minefield of the maximum size (100x100) composed of all '.', aka spaces
+        """
         # runs the minesweeper function for the test input file and writes
         # to the test output file
-        Minesweeper("mines_input_test.txt", "mines_output_test.txt")
+        Minesweeper("max_input_test.txt", "max_output_test.txt")
 
         # opens the output file and stores the output line range to read for
         # testing, then closes the output file
-        output_file = open("mines_output_test.txt", 'r')
+        output_file = open("max_output_test.txt", 'r')
         test_range = output_file.readlines()[102:203]
         output_file.close()
 
@@ -248,13 +256,17 @@ class MinesweeperTests(unittest.TestCase):
                          'minefield correctly, all field char should be 0')
 
     def test_max_mines_horizontal(self):
+        """
+        This method tests the ability of the Minesweeper class to create an accurate
+        minefield of the maximum rows and minimum columns (1x100) composed of all mines
+        """
         # runs the minesweeper function for the test input file and writes
         # to the test output file
-        Minesweeper("mines_input_test.txt", "mines_output_test.txt")
+        Minesweeper("max_input_test.txt", "max_output_test.txt")
 
         # opens the output file and stores the output line range to read for
         # testing, then closes the output file
-        output_file = open("mines_output_test.txt", 'r')
+        output_file = open("max_output_test.txt", 'r')
         test_range = output_file.readlines()[204:206]
         output_file.close()
 
@@ -266,13 +278,17 @@ class MinesweeperTests(unittest.TestCase):
                          '1x100 minefield')
 
     def test_max_mines_vertical(self):
+        """
+        This method tests the ability of the Minesweeper class to create an accurate
+        minefield of the minimum rows and maximum columns (100x1) composed of all mines
+        """
         # runs the minesweeper function for the test input file and writes
         # to the test output file
-        Minesweeper("mines_input_test.txt", "mines_output_test.txt")
+        Minesweeper("max_input_test.txt", "max_output_test.txt")
 
         # opens the output file and stores the output line range to read for
         # testing, then closes the output file
-        output_file = open("mines_output_test.txt", 'r')
+        output_file = open("max_output_test.txt", 'r')
         test_range = output_file.readlines()[207:308]
         output_file.close()
 
@@ -299,13 +315,17 @@ class MinesweeperTests(unittest.TestCase):
                          '100x1 minefield')
 
     def test_max_spaces_horizontal(self):
+        """
+        This method tests the ability of the Minesweeper class to create an accurate
+        minefield of the maximum rows and minimum columns (1x100) composed of all '.'
+        """
         # runs the minesweeper function for the test input file and writes
         # to the test output file
-        Minesweeper("mines_input_test.txt", "mines_output_test.txt")
+        Minesweeper("max_input_test.txt", "max_output_test.txt")
 
         # opens the output file and stores the output line range to read for
         # testing, then closes the output file
-        output_file = open("mines_output_test.txt", 'r')
+        output_file = open("max_output_test.txt", 'r')
         test_range = output_file.readlines()[309:311]
         output_file.close()
 
@@ -317,13 +337,17 @@ class MinesweeperTests(unittest.TestCase):
                          'all . minefield')
 
     def test_max_spaces_vertical(self):
+        """
+        This method tests the ability of the Minesweeper class to create an accurate
+        minefield of the minimum rows and maximum columns (100x1) composed of all '.'
+        """
         # runs the minesweeper function for the test input file and writes
         # to the test output file
-        Minesweeper("mines_input_test.txt", "mines_output_test.txt")
+        Minesweeper("max_input_test.txt", "max_output_test.txt")
 
         # opens the output file and stores the output line range to read for
         # testing, then closes the output file
-        output_file = open("mines_output_test.txt", 'r')
+        output_file = open("max_output_test.txt", 'r')
         test_range = output_file.readlines()[312:413]
         output_file.close()
 
